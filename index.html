@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ramesh R - Resume</title>
+    <title>Ramesh R - Interactive Resume</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
@@ -12,306 +14,653 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f5f5f5;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .resume-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .header-section {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e22ce 100%);
+            padding: 60px 50px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .header-content {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .profile-image-container {
+            position: relative;
+        }
+        
+        .profile-image {
+            width: 200px;
+            height: 240px;
+            border-radius: 20px;
+            object-fit: cover;
+            border: 5px solid rgba(255,255,255,0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 14px;
+            text-align: center;
             padding: 20px;
         }
         
-        .resume {
-            max-width: 850px;
-            margin: 0 auto;
-            background: white;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        .profile-image:hover {
+            transform: scale(1.05);
         }
         
-        .header {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        .profile-glow {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            border-radius: 30px;
+            animation: pulse 3s ease-in-out infinite;
+            z-index: -1;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+        
+        .header-text {
             color: white;
-            padding: 40px;
-            text-align: center;
         }
         
-        .header h1 {
-            font-size: 2.5em;
+        .header-text h1 {
+            font-size: 3.5em;
+            font-weight: 700;
             margin-bottom: 10px;
-            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            background: linear-gradient(to right, #fff, #e0e7ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
-        .contact-info {
+        .tagline {
+            font-size: 1.3em;
+            margin-bottom: 25px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .contact-item {
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 15px;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 15px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            transition: all 0.3s ease;
             font-size: 0.9em;
         }
         
-        .contact-info a {
+        .contact-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateX(5px);
+        }
+        
+        .contact-item i {
+            font-size: 1.2em;
+        }
+        
+        .contact-item a {
             color: white;
             text-decoration: none;
         }
         
-        .contact-info a:hover {
-            text-decoration: underline;
-        }
-        
-        .content {
-            padding: 40px;
+        .main-content {
+            padding: 50px;
         }
         
         .section {
-            margin-bottom: 30px;
+            margin-bottom: 50px;
+            animation: slideIn 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+        
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.3s; }
+        .section:nth-child(4) { animation-delay: 0.4s; }
+        .section:nth-child(5) { animation-delay: 0.5s; }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
         
         .section-title {
+            font-size: 2em;
+            font-weight: 700;
             color: #1e3c72;
-            font-size: 1.4em;
-            border-bottom: 3px solid #2a5298;
-            padding-bottom: 8px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 20px;
         }
         
-        .summary {
-            text-align: justify;
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 5px;
+            height: 80%;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+            border-radius: 10px;
+        }
+        
+        .summary-text {
+            font-size: 1.1em;
             line-height: 1.8;
             color: #555;
-        }
-        
-        .competencies {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-        }
-        
-        .competency-item {
-            background: #f8f9fa;
-            padding: 12px 15px;
-            border-left: 4px solid #2a5298;
-            border-radius: 4px;
-        }
-        
-        .education-item, .award-item {
-            margin-bottom: 20px;
-            padding-left: 20px;
-            border-left: 2px solid #e0e0e0;
-        }
-        
-        .degree {
-            font-weight: bold;
-            color: #1e3c72;
-            font-size: 1.1em;
-        }
-        
-        .institution {
-            color: #666;
-            font-style: italic;
-            margin: 5px 0;
-        }
-        
-        .details {
-            color: #555;
-            font-size: 0.95em;
-        }
-        
-        .publication-item {
-            margin-bottom: 15px;
-            padding-left: 20px;
             text-align: justify;
-            line-height: 1.7;
+            padding: 25px;
+            background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
         }
         
-        .skills-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
+        .competencies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
         }
         
-        .skill-tag {
-            background: #e8f0fe;
-            color: #1e3c72;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            border: 1px solid #2a5298;
+        .competency-card {
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .competency-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .competency-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(102,126,234,0.3);
+        }
+        
+        .competency-card:hover::before {
+            opacity: 1;
         }
         
         .experience-list {
             list-style: none;
+            padding: 0;
         }
         
-        .experience-list li {
-            padding-left: 25px;
-            margin-bottom: 10px;
-            position: relative;
+        .experience-item {
+            padding: 20px;
+            margin-bottom: 15px;
+            background: white;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
         }
         
-        .experience-list li:before {
-            content: "▸";
-            color: #2a5298;
-            font-weight: bold;
-            position: absolute;
-            left: 0;
+        .experience-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .education-card {
+            margin-bottom: 25px;
+            padding: 25px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 5px solid #764ba2;
+            transition: all 0.3s ease;
+        }
+        
+        .education-card:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
+        }
+        
+        .degree-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #1e3c72;
+            margin-bottom: 8px;
+        }
+        
+        .institution {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        
+        .details {
+            color: #888;
+            font-size: 0.95em;
+        }
+        
+        .award-card {
+            padding: 20px;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 15px;
+            border-left: 5px solid #f59e0b;
+            transition: all 0.3s ease;
+        }
+        
+        .award-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 20px rgba(245,158,11,0.2);
+        }
+        
+        .award-title {
+            font-weight: 600;
+            color: #92400e;
+        }
+        
+        .publication-item {
+            padding: 20px;
+            margin-bottom: 15px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            line-height: 1.7;
+            text-align: justify;
+            transition: all 0.3s ease;
+        }
+        
+        .publication-item:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .skill-tag {
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .skill-tag:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(102,126,234,0.4);
+        }
+        
+        .download-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(102,126,234,0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(102,126,234,0.5);
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .profile-image {
+                margin: 0 auto;
+            }
+            
+            .header-text h1 {
+                font-size: 2.5em;
+            }
+            
+            .main-content {
+                padding: 30px 20px;
+            }
+            
+            .section-title {
+                font-size: 1.5em;
+            }
         }
         
         @media print {
             body {
-                padding: 0;
                 background: white;
+                padding: 0;
             }
-            .resume {
+            
+            .resume-card {
                 box-shadow: none;
+                border-radius: 0;
             }
-            .header {
-                background: #1e3c72;
+            
+            .download-btn {
+                display: none;
             }
-        }
-        
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 1.8em;
-            }
-            .contact-info {
-                flex-direction: column;
-                gap: 10px;
-            }
-            .content {
-                padding: 20px;
+            
+            .header-section::before,
+            .profile-glow {
+                display: none;
             }
         }
     </style>
 </head>
 <body>
-    <div class="resume">
-        <div class="header">
-            <h1>RAMESH R</h1>
-            <div class="contact-info">
-                <span>📧 crisprramesh@gmail.com</span>
-                <span>📱 +91-9787973167</span>
-                <span>📍 New Delhi, India</span>
-            </div>
-            <div class="contact-info" style="margin-top: 10px;">
-                <a href="https://scholar.google.com/citations?user=pRR3FhsAAAAJ&hl=en" target="_blank">Google Scholar</a>
-                <a href="https://www.researchgate.net/profile/Ramesh-R-8?ev=hdr_xprf" target="_blank">ResearchGate</a>
-                <a href="https://github.com/rameshram96" target="_blank">GitHub</a>
-            </div>
-        </div>
-        
-        <div class="content">
-            <div class="section">
-                <h2 class="section-title">Professional Summary</h2>
-                <p class="summary">
-                    Plant Physiologist and agricultural researcher pursuing PhD in Plant Physiology, specializing in genome editing in rice using CRISPR/Cas technology. Expertise spans plant stress physiology, bioinformatics, and quantitative data analysis. Demonstrated proficiency in developing statistical and bioinformatics software using R and Python, with comprehensive research experience in plant molecular biology, genetic transformation, CRISPR-based crop improvement, and abiotic stress mitigation.
-                </p>
-            </div>
-            
-            <div class="section">
-                <h2 class="section-title">Core Competencies</h2>
-                <div class="competencies">
-                    <div class="competency-item">Genome Editing & Molecular Breeding</div>
-                    <div class="competency-item">Plant Stress Physiology</div>
-                    <div class="competency-item">Bioinformatics & Promoter Analysis</div>
-                    <div class="competency-item">R Programming & Package Development</div>
-                    <div class="competency-item">Scientific Communication</div>
-                    <div class="competency-item">Experimental Design & Analysis</div>
+    <div class="container">
+        <div class="resume-card">
+            <div class="header-section">
+                <div class="header-content">
+                    <div class="profile-image-container">
+                        <div class="profile-glow"></div>
+                        <div class="profile-image">
+                            📷 Replace this with your photo<br><br>
+                            Instructions in HTML
+                        </div>
+                    </div>
+                    <div class="header-text">
+                        <h1>RAMESH R</h1>
+                        <div class="tagline">Plant Physiologist | CRISPR Genome Editor | Bioinformatics Developer</div>
+                        <div class="contact-grid">
+                            <div class="contact-item">
+                                <span>📧</span>
+                                <a href="mailto:crisprramesh@gmail.com">crisprramesh@gmail.com</a>
+                            </div>
+                            <div class="contact-item">
+                                <span>📱</span>
+                                <span>+91-9787973167</span>
+                            </div>
+                            <div class="contact-item">
+                                <span>📍</span>
+                                <span>New Delhi, India</span>
+                            </div>
+                            <div class="contact-item">
+                                <span>🎓</span>
+                                <a href="https://scholar.google.com/citations?user=pRR3FhsAAAAJ&hl=en" target="_blank">Google Scholar</a>
+                            </div>
+                            <div class="contact-item">
+                                <span>🔬</span>
+                                <a href="https://www.researchgate.net/profile/Ramesh-R-8?ev=hdr_xprf" target="_blank">ResearchGate</a>
+                            </div>
+                            <div class="contact-item">
+                                <span>💻</span>
+                                <a href="https://github.com/rameshram96" target="_blank">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
-            <div class="section">
-                <h2 class="section-title">Research & Technical Experience</h2>
-                <ul class="experience-list">
-                    <li>Conducting genome editing research in rice to enhance yield and stress resilience using CRISPR/Cas technology</li>
-                    <li>Developed bioinformatics software for promoter extraction and transcription factor motif discovery</li>
-                    <li>Created visvaR R package incorporating ANOVA workflows, correlation modules, and automated Word/Excel report generation</li>
-                    <li>Developed PlantPhysioR R package for calculating stress indices in plant physiology research</li>
-                    <li>Expert in agricultural experimental design, statistical analysis, and data visualization</li>
-                </ul>
-            </div>
-            
-            <div class="section">
-                <h2 class="section-title">Education</h2>
-                <div class="education-item">
-                    <div class="degree">Ph.D. in Plant Physiology (Expected 2025)</div>
-                    <div class="institution">ICAR–Indian Agricultural Research Institute (IARI), New Delhi</div>
-                    <div class="details">• CGPA: 85.1% (Results Awaited) • Enrolled: 2021</div>
+            <div class="main-content">
+                <div class="section">
+                    <h2 class="section-title">Professional Summary</h2>
+                    <div class="summary-text">
+                        Plant Physiologist and agricultural researcher pursuing PhD in Plant Physiology, specializing in genome editing in rice using CRISPR/Cas technology. Expertise spans plant stress physiology, bioinformatics, and quantitative data analysis. Demonstrated proficiency in developing statistical and bioinformatics software using R and Python, with comprehensive research experience in plant molecular biology, genetic transformation, CRISPR-based crop improvement, and abiotic stress mitigation.
+                    </div>
                 </div>
-                <div class="education-item">
-                    <div class="degree">M.Sc. (Agriculture) – Crop Physiology (2021)</div>
-                    <div class="institution">College of Agriculture, Assam Agricultural University, Jorhat</div>
-                    <div class="details">• First Class with Distinction • Percentage: 86.3%</div>
+                
+                <div class="section">
+                    <h2 class="section-title">Core Competencies</h2>
+                    <div class="competencies-grid">
+                        <div class="competency-card">
+                            <h3>🧬 Genome Editing</h3>
+                            <p>CRISPR/Cas & Molecular Breeding</p>
+                        </div>
+                        <div class="competency-card">
+                            <h3>🌱 Plant Physiology</h3>
+                            <p>Stress Resilience & Adaptation</p>
+                        </div>
+                        <div class="competency-card">
+                            <h3>💻 Bioinformatics</h3>
+                            <p>Promoter & Sequence Analysis</p>
+                        </div>
+                        <div class="competency-card">
+                            <h3>📊 R Programming</h3>
+                            <p>Package Development & Shiny Apps</p>
+                        </div>
+                        <div class="competency-card">
+                            <h3>📝 Scientific Writing</h3>
+                            <p>Research Communication</p>
+                        </div>
+                        <div class="competency-card">
+                            <h3>🔬 Experimental Design</h3>
+                            <p>Statistical Analysis & Visualization</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="education-item">
-                    <div class="degree">B.Sc. (Agriculture) (2018)</div>
-                    <div class="institution">TRIARD, Perambalur, Tamil Nadu Agricultural University</div>
-                    <div class="details">• First Class • Percentage: 81.4%</div>
+                
+                <div class="section">
+                    <h2 class="section-title">Research & Technical Experience</h2>
+                    <ul class="experience-list">
+                        <li class="experience-item">
+                            🔬 Conducting genome editing research in rice to enhance yield and stress resilience using CRISPR/Cas technology
+                        </li>
+                        <li class="experience-item">
+                            💻 Developed bioinformatics software for promoter extraction and transcription factor motif discovery
+                        </li>
+                        <li class="experience-item">
+                            📦 Created visvaR R package incorporating ANOVA workflows, correlation modules, and automated Word/Excel report generation
+                        </li>
+                        <li class="experience-item">
+                            🌾 Developed PlantPhysioR R package for calculating stress indices in plant physiology research
+                        </li>
+                        <li class="experience-item">
+                            📊 Expert in agricultural experimental design, statistical analysis, and data visualization
+                        </li>
+                    </ul>
                 </div>
-            </div>
-            
-            <div class="section">
-                <h2 class="section-title">Awards & Recognitions</h2>
-                <div class="award-item">
-                    <strong>Joint CSIR–UGC NET – JRF (Life Sciences)</strong>, CSIR, 2025<br>
-                    All India Rank: 79
+                
+                <div class="section">
+                    <h2 class="section-title">Education</h2>
+                    <div class="education-card">
+                        <div class="degree-title">Ph.D. in Plant Physiology (Expected 2025)</div>
+                        <div class="institution">ICAR–Indian Agricultural Research Institute (IARI), New Delhi</div>
+                        <div class="details">CGPA: 85.1% (Results Awaited) | Enrolled: 2021</div>
+                    </div>
+                    <div class="education-card">
+                        <div class="degree-title">M.Sc. (Agriculture) – Crop Physiology (2021)</div>
+                        <div class="institution">College of Agriculture, Assam Agricultural University, Jorhat</div>
+                        <div class="details">First Class with Distinction | Percentage: 86.3%</div>
+                    </div>
+                    <div class="education-card">
+                        <div class="degree-title">B.Sc. (Agriculture) (2018)</div>
+                        <div class="institution">TRIARD, Perambalur, Tamil Nadu Agricultural University</div>
+                        <div class="details">First Class | Percentage: 81.4%</div>
+                    </div>
                 </div>
-                <div class="award-item">
-                    <strong>ASRB–NET (Plant Physiology)</strong>, Agricultural Scientists Recruitment Board, 2025
+                
+                <div class="section">
+                    <h2 class="section-title">Awards & Recognitions</h2>
+                    <div class="award-card">
+                        <div class="award-title">🏆 Joint CSIR–UGC NET – JRF (Life Sciences)</div>
+                        <div>CSIR, 2025 | All India Rank: 79</div>
+                    </div>
+                    <div class="award-card">
+                        <div class="award-title">🏆 ASRB–NET (Plant Physiology)</div>
+                        <div>Agricultural Scientists Recruitment Board, 2025</div>
+                    </div>
+                    <div class="award-card">
+                        <div class="award-title">🏆 ICAR JRF/SRF Fellowship</div>
+                        <div>Indian Council of Agricultural Research, 2022</div>
+                    </div>
+                    <div class="award-card">
+                        <div class="award-title">🏆 ICAR–NTS (PG) Fellowship</div>
+                        <div>Indian Council of Agricultural Research, 2019</div>
+                    </div>
+                    <div class="award-card">
+                        <div class="award-title">🏆 Best Poster Award</div>
+                        <div>National Conference of Plant Physiology, 2023 | Indian Society for Plant Physiology</div>
+                    </div>
                 </div>
-                <div class="award-item">
-                    <strong>ICAR JRF/SRF Fellowship</strong>, Indian Council of Agricultural Research, 2022
+                
+                <div class="section">
+                    <h2 class="section-title">Selected Publications</h2>
+                    <div class="publication-item">
+                        1. Bhupenchandra I, Chongtham SK, Devi EL, <strong>Ramesh R</strong>, Choudhary AK, et al. (2022). Role of biostimulants in mitigating the effects of climate change on crop performance. <em>Frontiers in Plant Science</em>, 967665.
+                    </div>
+                    <div class="publication-item">
+                        2. Barman D, Kumar R, Ghimire OP, <strong>Ramesh R</strong>, Gupta S, et al. (2024). Melatonin induces acclimation to heat stress and pollen viability by enhancing antioxidative defense in rice (Oryza sativa L.). <em>Environmental and Experimental Botany</em>, 220, 105693.
+                    </div>
+                    <div class="publication-item">
+                        3. Boopal J, Sathee L, <strong>Ramasamy R</strong>, Pandey R, Chinnasamy V (2023). Influence of incremental short-term salt stress at the seedling stage on root plasticity, shoot thermal profile and ion homeostasis in contrasting wheat genotypes. <em>Agriculture</em>, 13(10), 1946.
+                    </div>
+                    <div class="publication-item">
+                        4. Majumdar S, <strong>Ramesh R</strong>, Muruganatham L, Thimmappa P, Choudhary D, et al. (2025). Deciphering the Role of Silicon in Mitigation of Arsenic Toxicity in Soil–Plant Interface—An Overview. <em>Silicon</em>, 1–29.
+                    </div>
+                    <div class="publication-item">
+                        5. Kathirvelu D, Singh B, <strong>Ramasamy R</strong>, Krishna H, Vishwakarma C (2025). Association of seedling root traits with field-level drought tolerance in wheat (Triticum aestivum). <em>Plant Physiology Reports</em>, 30(3), 569–581.
+                    </div>
                 </div>
-                <div class="award-item">
-                    <strong>ICAR–NTS (PG) Fellowship</strong>, Indian Council of Agricultural Research, 2019
+                
+                <div class="section">
+                    <h2 class="section-title">Technical Skills</h2>
+                    <div class="skills-container">
+                        <div class="skill-tag">CRISPR/Cas9</div>
+                        <div class="skill-tag">R Programming</div>
+                        <div class="skill-tag">Python</div>
+                        <div class="skill-tag">Bioinformatics</div>
+                        <div class="skill-tag">Statistical Analysis</div>
+                        <div class="skill-tag">Sequence Analysis</div>
+                        <div class="skill-tag">Motif Scanning</div>
+                        <div class="skill-tag">Shiny Apps</div>
+                        <div class="skill-tag">Package Development</div>
+                        <div class="skill-tag">Data Visualization</div>
+                        <div class="skill-tag">Experimental Design</div>
+                        <div class="skill-tag">Molecular Biology</div>
+                    </div>
                 </div>
-                <div class="award-item">
-                    <strong>Best Poster Award</strong>, National Conference of Plant Physiology, 2023<br>
-                    Indian Society for Plant Physiology
+                
+                <div class="section">
+                    <h2 class="section-title">Languages</h2>
+                    <div class="skills-container">
+                        <div class="skill-tag">English (Fluent)</div>
+                        <div class="skill-tag">Tamil (Native)</div>
+                        <div class="skill-tag">Hindi (Conversational)</div>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="section">
-                <h2 class="section-title">Selected Publications</h2>
-                <div class="publication-item">
-                    1. Bhupenchandra I, Chongtham SK, Devi EL, <strong>Ramesh R</strong>, Choudhary AK, et al. (2022). Role of biostimulants in mitigating the effects of climate change on crop performance. <em>Frontiers in Plant Science</em>, 967665.
-                </div>
-                <div class="publication-item">
-                    2. Barman D, Kumar R, Ghimire OP, <strong>Ramesh R</strong>, Gupta S, et al. (2024). Melatonin induces acclimation to heat stress and pollen viability by enhancing antioxidative defense in rice (Oryza sativa L.). <em>Environmental and Experimental Botany</em>, 220, 105693.
-                </div>
-                <div class="publication-item">
-                    3. Boopal J, Sathee L, <strong>Ramasamy R</strong>, Pandey R, Chinnasamy V (2023). Influence of incremental short-term salt stress at the seedling stage on root plasticity, shoot thermal profile and ion homeostasis in contrasting wheat genotypes. <em>Agriculture</em>, 13(10), 1946.
-                </div>
-                <div class="publication-item">
-                    4. Majumdar S, <strong>Ramesh R</strong>, Muruganatham L, Thimmappa P, Choudhary D, et al. (2025). Deciphering the Role of Silicon in Mitigation of Arsenic Toxicity in Soil–Plant Interface—An Overview. <em>Silicon</em>, 1–29.
-                </div>
-                <div class="publication-item">
-                    5. Kathirvelu D, Singh B, <strong>Ramasamy R</strong>, Krishna H, Vishwakarma C (2025). Association of seedling root traits with field-level drought tolerance in wheat (Triticum aestivum). <em>Plant Physiology Reports</em>, 30(3), 569–581.
-                </div>
-            </div>
-            
-            <div class="section">
-                <h2 class="section-title">Technical Skills</h2>
-                <div class="skills-grid">
-                    <span class="skill-tag">CRISPR/Cas Genome Editing</span>
-                    <span class="skill-tag">R Programming</span>
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">Bioinformatics</span>
-                    <span class="skill-tag">Statistical Analysis</span>
-                    <span class="skill-tag">Sequence Analysis</span>
-                    <span class="skill-tag">Motif Scanning</span>
-                    <span class="skill-tag">Experimental Design</span>
-                    <span class="skill-tag">Data Visualization</span>
-                    <span class="skill-tag">Shiny Apps</span>
-                    <span class="skill-tag">Package Development</span>
-                </div>
-            </div>
-            
-            <div class="section">
-                <h2 class="section-title">Languages</h2>
-                <p><strong>English:</strong> Read, Write, Speak | <strong>Tamil:</strong> Read, Write, Speak | <strong>Hindi:</strong> Speak</p>
             </div>
         </div>
     </div>
-</body>
-</html>
+    
+    <button class="download-btn" onclick="window.print()">💾 Download PDF</button>
+    
+  
