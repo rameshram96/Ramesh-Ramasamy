@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramesh R - Resume</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .resume {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+        
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            color: #1e3c72;
+            font-size: 1.4em;
+            border-bottom: 3px solid #2a5298;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .summary {
+            text-align: justify;
+            line-height: 1.8;
+            color: #555;
+        }
+        
+        .competencies {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .competency-item {
+            background: #f8f9fa;
+            padding: 12px 15px;
+            border-left: 4px solid #2a5298;
+            border-radius: 4px;
+        }
+        
+        .education-item, .award-item {
+            margin-bottom: 20px;
+            padding-left: 20px;
+            border-left: 2px solid #e0e0e0;
+        }
+        
+        .degree {
+            font-weight: bold;
+            color: #1e3c72;
+            font-size: 1.1em;
+        }
+        
+        .institution {
+            color: #666;
+            font-style: italic;
+            margin: 5px 0;
+        }
+        
+        .details {
+            color: #555;
+            font-size: 0.95em;
+        }
+        
+        .publication-item {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            text-align: justify;
+            line-height: 1.7;
+        }
+        
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .skill-tag {
+            background: #e8f0fe;
+            color: #1e3c72;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            border: 1px solid #2a5298;
+        }
+        
+        .experience-list {
+            list-style: none;
+        }
+        
+        .experience-list li {
+            padding-left: 25px;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        
+        .experience-list li:before {
+            content: "▸";
+            color: #2a5298;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            .resume {
+                box-shadow: none;
+            }
+            .header {
+                background: #1e3c72;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            .contact-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="resume">
+        <div class="header">
+            <h1>RAMESH R</h1>
+            <div class="contact-info">
+                <span>📧 crisprramesh@gmail.com</span>
+                <span>📱 +91-9787973167</span>
+                <span>📍 New Delhi, India</span>
+            </div>
+            <div class="contact-info" style="margin-top: 10px;">
+                <a href="https://scholar.google.com/citations?user=pRR3FhsAAAAJ&hl=en" target="_blank">Google Scholar</a>
+                <a href="https://www.researchgate.net/profile/Ramesh-R-8?ev=hdr_xprf" target="_blank">ResearchGate</a>
+                <a href="https://github.com/rameshram96" target="_blank">GitHub</a>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <h2 class="section-title">Professional Summary</h2>
+                <p class="summary">
+                    Plant Physiologist and agricultural researcher pursuing PhD in Plant Physiology, specializing in genome editing in rice using CRISPR/Cas technology. Expertise spans plant stress physiology, bioinformatics, and quantitative data analysis. Demonstrated proficiency in developing statistical and bioinformatics software using R and Python, with comprehensive research experience in plant molecular biology, genetic transformation, CRISPR-based crop improvement, and abiotic stress mitigation.
+                </p>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Core Competencies</h2>
+                <div class="competencies">
+                    <div class="competency-item">Genome Editing & Molecular Breeding</div>
+                    <div class="competency-item">Plant Stress Physiology</div>
+                    <div class="competency-item">Bioinformatics & Promoter Analysis</div>
+                    <div class="competency-item">R Programming & Package Development</div>
+                    <div class="competency-item">Scientific Communication</div>
+                    <div class="competency-item">Experimental Design & Analysis</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Research & Technical Experience</h2>
+                <ul class="experience-list">
+                    <li>Conducting genome editing research in rice to enhance yield and stress resilience using CRISPR/Cas technology</li>
+                    <li>Developed bioinformatics software for promoter extraction and transcription factor motif discovery</li>
+                    <li>Created visvaR R package incorporating ANOVA workflows, correlation modules, and automated Word/Excel report generation</li>
+                    <li>Developed PlantPhysioR R package for calculating stress indices in plant physiology research</li>
+                    <li>Expert in agricultural experimental design, statistical analysis, and data visualization</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Education</h2>
+                <div class="education-item">
+                    <div class="degree">Ph.D. in Plant Physiology (Expected 2025)</div>
+                    <div class="institution">ICAR–Indian Agricultural Research Institute (IARI), New Delhi</div>
+                    <div class="details">• CGPA: 85.1% (Results Awaited) • Enrolled: 2021</div>
+                </div>
+                <div class="education-item">
+                    <div class="degree">M.Sc. (Agriculture) – Crop Physiology (2021)</div>
+                    <div class="institution">College of Agriculture, Assam Agricultural University, Jorhat</div>
+                    <div class="details">• First Class with Distinction • Percentage: 86.3%</div>
+                </div>
+                <div class="education-item">
+                    <div class="degree">B.Sc. (Agriculture) (2018)</div>
+                    <div class="institution">TRIARD, Perambalur, Tamil Nadu Agricultural University</div>
+                    <div class="details">• First Class • Percentage: 81.4%</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Awards & Recognitions</h2>
+                <div class="award-item">
+                    <strong>Joint CSIR–UGC NET – JRF (Life Sciences)</strong>, CSIR, 2025<br>
+                    All India Rank: 79
+                </div>
+                <div class="award-item">
+                    <strong>ASRB–NET (Plant Physiology)</strong>, Agricultural Scientists Recruitment Board, 2025
+                </div>
+                <div class="award-item">
+                    <strong>ICAR JRF/SRF Fellowship</strong>, Indian Council of Agricultural Research, 2022
+                </div>
+                <div class="award-item">
+                    <strong>ICAR–NTS (PG) Fellowship</strong>, Indian Council of Agricultural Research, 2019
+                </div>
+                <div class="award-item">
+                    <strong>Best Poster Award</strong>, National Conference of Plant Physiology, 2023<br>
+                    Indian Society for Plant Physiology
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Selected Publications</h2>
+                <div class="publication-item">
+                    1. Bhupenchandra I, Chongtham SK, Devi EL, <strong>Ramesh R</strong>, Choudhary AK, et al. (2022). Role of biostimulants in mitigating the effects of climate change on crop performance. <em>Frontiers in Plant Science</em>, 967665.
+                </div>
+                <div class="publication-item">
+                    2. Barman D, Kumar R, Ghimire OP, <strong>Ramesh R</strong>, Gupta S, et al. (2024). Melatonin induces acclimation to heat stress and pollen viability by enhancing antioxidative defense in rice (Oryza sativa L.). <em>Environmental and Experimental Botany</em>, 220, 105693.
+                </div>
+                <div class="publication-item">
+                    3. Boopal J, Sathee L, <strong>Ramasamy R</strong>, Pandey R, Chinnasamy V (2023). Influence of incremental short-term salt stress at the seedling stage on root plasticity, shoot thermal profile and ion homeostasis in contrasting wheat genotypes. <em>Agriculture</em>, 13(10), 1946.
+                </div>
+                <div class="publication-item">
+                    4. Majumdar S, <strong>Ramesh R</strong>, Muruganatham L, Thimmappa P, Choudhary D, et al. (2025). Deciphering the Role of Silicon in Mitigation of Arsenic Toxicity in Soil–Plant Interface—An Overview. <em>Silicon</em>, 1–29.
+                </div>
+                <div class="publication-item">
+                    5. Kathirvelu D, Singh B, <strong>Ramasamy R</strong>, Krishna H, Vishwakarma C (2025). Association of seedling root traits with field-level drought tolerance in wheat (Triticum aestivum). <em>Plant Physiology Reports</em>, 30(3), 569–581.
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Technical Skills</h2>
+                <div class="skills-grid">
+                    <span class="skill-tag">CRISPR/Cas Genome Editing</span>
+                    <span class="skill-tag">R Programming</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Bioinformatics</span>
+                    <span class="skill-tag">Statistical Analysis</span>
+                    <span class="skill-tag">Sequence Analysis</span>
+                    <span class="skill-tag">Motif Scanning</span>
+                    <span class="skill-tag">Experimental Design</span>
+                    <span class="skill-tag">Data Visualization</span>
+                    <span class="skill-tag">Shiny Apps</span>
+                    <span class="skill-tag">Package Development</span>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Languages</h2>
+                <p><strong>English:</strong> Read, Write, Speak | <strong>Tamil:</strong> Read, Write, Speak | <strong>Hindi:</strong> Speak</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
